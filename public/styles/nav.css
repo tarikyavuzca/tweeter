@@ -1,0 +1,36 @@
+nav {
+  height: 120px;
+  background-color: #4056A1;
+  color: #FFFFFF;
+  padding: 1.5em;
+  z-index: 99;
+  position: fixed;
+  width: 100vw;
+}
+
+
+nav span:nth-child(1) {
+  font-family: 'Bungee', sans-serif;
+  float: left;
+  right: 1.5em;
+}
+
+nav span:nth-child(2) {
+  position: absolute;
+  right: 1.5em;
+  top: 1.5em;
+}
+
+nav i {
+  position: absolute;
+  right: 50%;
+  color: red;
+  bottom: -1.3em;
+}
+
+nav i:hover {
+  color: #fff;
+  font-size: 1.5em;
+  transition: all 0.3s ease;
+  bottom: -1.3em;
+}
