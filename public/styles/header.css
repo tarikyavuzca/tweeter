@@ -1,3 +1,4 @@
+
 .profile{
   height: 400px;
   width: 100%;
@@ -16,3 +17,36 @@
   text-align: center;
   margin-top: 0px;
 }
+
+
+@media screen and (min-width: 1024px) {
+  .all-container {
+    display:flex;
+    flex-direction: row;
+    background-color: #f4f1ec;
+    margin: auto;
+    justify-content: space-around;
+  }
+  .profile {
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 33%;
+    background-color: #00a19d;
+    padding: 1em;
+    margin: 1em;
+    background-image: none;
+  }
+
+  .profile img {
+    width: 8em;
+  }
+
+  .scroll-up {
+    display: none;
+  }
+
+}
+
+
+

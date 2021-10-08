@@ -54,3 +54,42 @@
 .all-tweets footer i:hover {
   color: orange;
 }
+
+
+@media screen and (min-width: 1024px) {
+  .all-tweets {
+    width: 100%;
+    float: right;
+    background-color: #f4f1ec;
+    
+  }
+
+}
+
+@media only screen and (min-width: 320px) and (max-width: 752px) {
+  .all-tweets img {
+    padding: 0.5em 0em 0em 0.5em;
+    width: 40px;
+    margin: 10px;
+  }
+  .all-tweets header span:nth-of-type(1) {
+    position: relative;
+    bottom: 0.5em;
+    font-weight: 300;
+  }
+
+  .all-tweets header span:nth-of-type(2) {
+    position: absolute;
+    padding-top: 1em;
+    right: 10%;
+    color: #54514956;
+    font-weight: 300;
+  }
+
+  .all-tweets p {
+    margin: 0 0.4em;
+    padding: 2em 1em 0.5em;
+    border-bottom: 4px solid #545149;
+    font-weight: 400;
+  }
+}

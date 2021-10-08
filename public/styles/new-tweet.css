@@ -1,7 +1,5 @@
 .new-tweet form {
   margin: 60px 0 60px;
-  
-  
 }
 
 
@@ -11,7 +9,7 @@
   border: 0;
   border-bottom: 4px solid #545149 ;
   font-weight: 700;
-  background-color: rgb(207, 181, 181);
+  background-color: inherit;
   color: #545149;
 }
 
@@ -52,4 +50,21 @@
 
 .tweet-good {
   color: green;
+}
+
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 67.3%;
+    float: right;
+    background-color: inherit;
+    padding: 1em;
+    margin: 0em 1em;
+
+  }
+
+  .new-tweet form {
+    margin: 60px 0 0;
+  }
+
 }
