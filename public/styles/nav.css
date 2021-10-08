@@ -8,8 +8,12 @@ nav {
   width: 100vw;
 }
 
+nav span a {
+  color: #fff;
+}
 
 nav span:nth-child(1) {
+  color: #fff;
   font-family: 'Bungee', sans-serif;
   float: left;
   right: 1.5em;

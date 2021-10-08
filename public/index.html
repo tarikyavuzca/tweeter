@@ -13,13 +13,17 @@
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/all-tweets.css" type="text/css" />
+    
 
+    <!-- TimeAgo JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
     <script src="scripts/composer-char-counter.js"></script>
+    <script src="scripts/composer.js"></script>
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,7 +38,7 @@
   <body>
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span>Tweeter</span>
+      <span id="main-page"><a href="#main-page">Tweeter</a></span>
       <span>
         <b>Write</b> a new tweet
         <a><i class="fas fa-angle-double-down"></i></a>
@@ -55,39 +59,29 @@
     <!-- Page-specific (main) content here -->
 
     <main class="container">
+
       <section class="new-tweet">
-        <form method="POST" action="/tweets/">
+        <!-- Error message, hidden by default -->
+      <h4 class="error-message"></h4>
+      <h4 class="tweet-good"></h4>
+        
+      
+      
+        <form id="tweet-form" method="POST" action="/tweets/">
           <textarea name="text" placeholder="What are you humming about?"></textarea>
-
-          <!-- Error message, hidden by default -->
-          <h4 class="err-message"> 
-            <i class="fas fa-exclamation-circle"></i>
-            <span class='tweet-error'>Error message goes here</span>
-          </h4>
-
           <input type="submit" value="Tweet">
           <span class="counter">140</span>
         </form>
       </section>
 
       
-        <section class="all-tweets">
-          <article>
-            <header>
-              <img src="images/profile-hex.png" alt="user-avatar">
-              <span>Newton</span> 
-              <span>@SirIsaac</span> 
-            </header>
-            <p>If I have seen further it is by standing on the shoulders of giants</p> 
-            <footer>
-              <span>10 days ago</span> 
-              <i class="fas fa-flag"></i>
-              <i class="fas fa-retweet"></i>
-              <i class="fas fa-heart"></i>
-            </footer>
-          </article>
-        </section>
+
+      <!-- all tweets -->
+        <section class="all-tweets"></section>
       
+
+         <!-- Scroll up button -->
+      <button class='scroll-up'><i class="fas fa-angle-double-up"></i></button>
     </main>
 
   </body>

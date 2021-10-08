@@ -103,7 +103,7 @@ $(document).ready(() => { //When the page is loaded
         .delay(1500)
         .slideUp("slow");
       
-      // GET tweets from the server and render them on the page
+      // Getting the tweets from the server and prompt them on the page
         $.ajax('/tweets', {
           method: 'POST',
           data: $(this).serialize(),
