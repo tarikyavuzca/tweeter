@@ -8,6 +8,10 @@ This repository is the starter code for the project: Students will fork and clon
 
 *Main page, sized for desktop*
 
+!["Screenshot main page in desktop size"](https://github.com/tarikyavuzca/tweeter/blob/master/public/images/Screen%20Shot%202021-10-08%20at%2012.27.56%20AM.png)
+
+*Main page, sized for desktop*
+
 !["Screenshot main page in desktop size"](https://github.com/tarikyavuzca/tweeter/blob/master/public/images/Screen%20Shot%202021-10-08%20at%2012.20.57%20AM.png)
 
 *Main page, sized for tablet*
@@ -33,3 +37,8 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+- EJS
+- body-parser
+- cookie-session
+
+#### Give it a try! 
