@@ -43,7 +43,7 @@ nav i:hover {
 
 @media only screen and (min-width: 752px) and (max-width: 1024px) {
   nav {
-    height: 120px;
+    height: 100px;
     background-color: #4056A1;
     color: #FFFFFF;
     padding: 1.5em;
@@ -55,12 +55,27 @@ nav i:hover {
 
 @media only screen and (min-width: 320px) and (max-width: 752px) {
   nav {
-    height: 120px;
+    height: 100px;
     background-color: #4056A1;
     color: #FFFFFF;
     padding: 1.5em;
     z-index: 99;
     position: fixed;
     width: 100vw;
+  }
+
+  nav span:nth-child(1) {
+    color: #fff;
+    font-family: 'Bungee', sans-serif;
+    float: left;
+    right: 1.5em;
+    font-size: 0.8em;
+  }
+
+  nav span:nth-child(2) {
+    position: absolute;
+    right: 1.5em;
+    top: 1.5em;
+    font-size: 0.8em;
   }
 }

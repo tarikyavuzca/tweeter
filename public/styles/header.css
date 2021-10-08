@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  top: 120px;
+  top: 100px;
 }
 
 .profile h2 {
@@ -30,16 +30,16 @@
   .profile {
     align-items: center;
     justify-content: center;
-    height: 50vh;
-    width: 33%;
+    height: 40vh;
+    width: 25%;
     background-color: #00a19d;
     padding: 1em;
-    margin: 1em;
+    margin: 4.5em 0 0 3em;
     background-image: none;
   }
 
   .profile img {
-    width: 8em;
+    width: 6em;
   }
 
   .scroll-up {
