@@ -5,7 +5,9 @@ const escape = str => {
   return div.innerHTML;
 }
 
-// adding all tweets to our page by prepending them
+// renderTweets function accepting tweetsDatabase as parameter
+// for all tweet object, createTweetElement function is called
+// Prepend all the return tweets to the html class of all-tweet
 const renderTweets = tweetsDatabase => {
 
   $('.all-tweets').empty();
@@ -14,6 +16,8 @@ const renderTweets = tweetsDatabase => {
   });
 };
 
+// Making a GET request to the database
+// runs the returned tweet 
 const loadTweets = () => {
   $.ajax('/tweets', {
     method: 'GET',
@@ -24,12 +28,25 @@ const loadTweets = () => {
 };
 
 
+// daysSinceTweet function takes a  parameter of timeOfTweet
+const daysSinceTweet = function(timeOfTweet) {
+  const currentDate = new Date();
+  const currentTime = currentDate.getTime();
+  const millisecondsInDay = 86400000;
+
+  const timeDifference = currentTime - timeOfTweet;
+  const dayDifference = timeDifference / millisecondsInDay;
+
+  return Math.floor(dayDifference);
+};
+
+
 // createTweetElement function accepting tweetData as a parameter and returns the structure that containing tweets
 const createTweetElement = tweetData => {
 
   const $tweet = $('<article>').addClass('tweet');
 
-  const daysSinceTweet = (Date.now() - tweetData.created_at) / 86400000;
+  const $dayAgo = daysSinceTweet(tweetData.created_at);
 
   // Elements of tweet object
   const htmlContent = `
@@ -40,7 +57,7 @@ const createTweetElement = tweetData => {
     </header>
     <p>${escape(tweetData.content.text)}</p>
     <footer>
-      ${Math.round(daysSinceTweet)} days ago
+      ${$dayAgo} days ago
       <span>
         <i class="fas fa-flag"></i>
         <i class="fas fa-retweet"></i>
@@ -48,8 +65,6 @@ const createTweetElement = tweetData => {
       </span>
     </footer>
   `
-
-  //returns the elements inside of inner html
   return $tweet.html(htmlContent);
 };
 
@@ -61,7 +76,7 @@ $(document).ready(() => { //When the page is loaded
 
   
   // shows/hides new tweet section when clicked the arrow icon on navbar
-  $('nav i').on('click', () => {
+    $('nav i').on('click', () => {
     $('.new-tweet').slideToggle();
     $('.new-tweet textarea').focus();
   });
@@ -70,17 +85,15 @@ $(document).ready(() => { //When the page is loaded
   $('.new-tweet form').submit(function(event) {
     event.preventDefault();
 
-    // const errSymbol = $(this).children('i');
+    
     const $errorMessage = $(this).children('.error-message');
-    const $sent = $(this).children('.tweet-sent');
     const $text = $(this).children('textarea');
     const message = $text.val().trim();
     
     // hide error message in case it's in display
-
     $errorMessage.hide();
 
-    // check if input is valid, show error message if it's not
+    // check if message is exist
     if (!message) {
       $(".error-message")
         .html("<i class='fas fa-exclamation-triangle'></i>  Use (.) :) !<i class='fas fa-exclamation-triangle'></i> ")
@@ -88,14 +101,15 @@ $(document).ready(() => { //When the page is loaded
         .delay(1500)
         .slideUp("slow");
       
-      
+    // check if the length of message is greater than 140
     } else if (message.length > 140) {
       $(".error-message")
         .html("<i class='fas fa-exclamation-triangle'></i> Dude, don't you see the limit!<i class='fas fa-exclamation-triangle'></i> ")
         .slideDown("slow")
         .delay(1500)
         .slideUp("slow");
-        
+
+    // else everything goes smooth 
     } else { 
       $(".tweet-good")
         .html("<i class='fas fa-smile-wink'></i> Tweet Sent, Check Below <i class='fas fa-smile-wink'></i> ")
