@@ -12,7 +12,8 @@ const renderTweets = tweetsDatabase => {
 
   $('.all-tweets').empty();
   tweetsDatabase.forEach(tweet => {
-    $('.all-tweets').prepend(createTweetElement(tweet));
+    const $thisNewTweet = createTweetElement(tweet)
+    $('.all-tweets').prepend($thisNewTweet);
   });
 };
 
@@ -47,76 +48,77 @@ const createTweetElement = tweetData => {
 
 
 
-// Making a GET request to the database
-// runs the returned tweet 
-const loadTweets = () => {
-  $.ajax('/tweets', {
-    method: 'GET',
-    dataType: 'json',
-    success: tweets => renderTweets(tweets),
-    error: (data, text, error) => console.error(error)
-  })
-};
 
 
 $(document).ready(() => { //When the page is loaded
+
   
-  
-  
+
   // shows/hides new tweet section when clicked the arrow icon on navbar
-  $('nav i').on('click', () => {
+    $('nav i').on('click', () => {
     $('.new-tweet').slideToggle();
     $('.new-tweet textarea').focus();
   });
+
   
   // handling new tweet form submit
   $('.new-tweet form').submit(function(event) {
     event.preventDefault();
-    
-    
+
+
     const $errorMessage = $(this).children('.error-message');
-    const $text = $(this).children('textarea');
-    const message = $text.val().trim();
-    
     // hide error message in case it's in display
     $errorMessage.hide();
-    
+
     // check if message is exist
-    if (!message) {
+    if ($("#t_text").val() === "" || $("#t_text").val() === null) {
       $(".error-message")
-      .html("<i class='fas fa-exclamation-triangle'></i>  Use (.) :) !<i class='fas fa-exclamation-triangle'></i> ")
-      .slideDown("slow")
-      .delay(1500)
-      .slideUp("slow");
+        .html("<i class='fas fa-exclamation-triangle'></i>  Use (.) :) !<i class='fas fa-exclamation-triangle'></i> ")
+        .slideDown("slow")
+        .delay(1500)
+        .slideUp("slow");
       
-      // check if the length of message is greater than 140
-    } else if (message.length > 140) {
+    // check if the length of message is greater than 140
+    } else if ($("#t_text").val().length > 140) {
       $(".error-message")
-      .html("<i class='fas fa-exclamation-triangle'></i> Dude, don't you see the limit!<i class='fas fa-exclamation-triangle'></i> ")
-      .slideDown("slow")
-      .delay(1500)
-      .slideUp("slow");
-      
-      // else everything goes smooth 
+        .html("<i class='fas fa-exclamation-triangle'></i> Dude, don't you see the limit!<i class='fas fa-exclamation-triangle'></i> ")
+        .slideDown("slow")
+        .delay(1500)
+        .slideUp("slow");
+
+    // else everything goes smooth 
     } else { 
       $(".tweet-good")
-      .html("<i class='fas fa-smile-wink'></i> Tweet Sent, Check Below <i class='fas fa-smile-wink'></i> ")
-      .slideDown("slow")
-      .delay(1500)
-      .slideUp("slow");
-      
+        .html("<i class='fas fa-smile-wink'></i> Tweet Sent, Check Below <i class='fas fa-smile-wink'></i> ")
+        .slideDown("slow")
+        .delay(1500)
+        .slideUp("slow");
+        $(".counter").html(140);
       // Getting the tweets from the server and prompt them on the page
-      $.ajax('/tweets', {
-        method: 'POST',
-        data: $(this).serialize(),
-        success: () => { 
-          loadTweets(); 
-          $text.val('');
-          $('.counter').html("140");
-        }, 
-        error: (data, text, error) => console.error(error)
-      })
-      loadTweets();
-    }
+        const $formData = $("#t_text").serialize();
+      
+        $("#t_text").val('');
+        $("#t_text").attr("style", "");
+        $.post({
+          url: "tweets",
+          data: $formData
+          }).done(function() {
+            loadTweets();
+          })
+        }
   })
+  // Making a GET request to the database
+// runs the returned tweet 
+const loadTweets = () => {
+  $.get( {
+    url: '/tweets',
+    dataType: 'json',
+    data: "data",
+    success: function(tweets) {
+      renderTweets(tweets);
+    }
+  });
+};
+  loadTweets();
 })
+
